@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "car-driving-backend-djangoapp.onrender.com",
+    "https://car-driving-react-js-frontend.vercel.app/",
 ]
 
 # Application definition
