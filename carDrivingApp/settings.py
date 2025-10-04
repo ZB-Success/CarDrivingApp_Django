@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "127.0.0.1:5173",
     "car-trip-planer-backend-django-app.onrender.com",
     "https://car-driving-react-js-frontend.vercel.app/",
 ]
@@ -35,6 +36,7 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
