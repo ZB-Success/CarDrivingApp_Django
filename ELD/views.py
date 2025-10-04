@@ -138,6 +138,24 @@ def split_into_daily_logs(start_dt, total_minutes, cycle_hours_used):
 # API View
 # -----------------------------
 class TripView(APIView):
+    def get(self, request):
+        trips = Trip.objects.all()
+        if not trips:
+            return Response("No trips found.", content_type="text/plain", status=status.HTTP_200_OK)
+
+        response_text = ""
+        for trip in trips:
+            response_text += (
+                f"Trip ID: {trip.id}\n"
+                f"Driver: {trip.driver_id}\n"
+                f"Start: {trip.start_datetime}\n"
+                f"From: {trip.current_location}\n"
+                f"Pickup: {trip.pickup_location}\n"
+                f"Dropoff: {trip.dropoff_location}\n"
+                f"Distance/Duration: {trip.result.get('route', {}).get('distance_miles','')} miles / {trip.result.get('route', {}).get('duration_min','')} min\n"
+                "-------------------------\n"
+            )
+        return Response(response_text, content_type="text/plain", status=status.HTTP_200_OK)
     def post(self, request):
         data = request.data
         start_dt = datetime.fromisoformat(data.get('start_datetime'))
@@ -183,3 +201,5 @@ class TripView(APIView):
 
         # Step 5: Respond
         return Response(trip.result, status=status.HTTP_201_CREATED)
+    def get(self, request):
+        return Response("Hello! Backend is working fine.", content_type="text/plain")
