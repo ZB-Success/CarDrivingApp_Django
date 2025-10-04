@@ -21,6 +21,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('driving.urls')),
+    path('api/', include('ELD.urls')), #👈 this connects eld/urls.py
 ]
+  
+
 
